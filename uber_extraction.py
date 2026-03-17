@@ -2,6 +2,7 @@ from pydantic import BaseModel,field_validator
 import re
 import json
 from datetime import datetime,time,timedelta
+import mysql.connector
 
 class Location(BaseModel):
     address:str
@@ -80,6 +81,8 @@ class UberEats(BaseModel):
             raise ValueError("Invalid phone number")
         return v
 
+
+
 with open('uber_eats.json','r',encoding='utf-8') as f:
     data=json.load(f)
 
@@ -113,7 +116,7 @@ try:
     delivery_time=data['etaRange']['text']
     rating=data['rating']
 except Exception as e:
-    print("Meta error:", e)
+    print(e)
 
 aval=list()
 
@@ -189,6 +192,7 @@ try:
     )
 except Exception as e:
     print("Final object error:", e)
+
 
 with open('uber_output.json','w',encoding='utf-8') as f:
     json.dump(uber_eats.model_dump(),f,ensure_ascii=False,indent=4,default=str)
