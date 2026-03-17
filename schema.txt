@@ -1,0 +1,12 @@
+restaurant_name:str
+restaurant_number:str
+product_category:[str]
+delivery_fee:float
+img:[str]
+location:{addr,country,latitude,longitue}
+currency:str
+delivered_time:str
+rating:float
+availability:{dayrange:{starttime,endtime}}
+deliverable_distance:str
+menu:{category:[{item_name,price,desc}]}
