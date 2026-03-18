@@ -16,9 +16,6 @@ with open('uber_output.json', 'r', encoding='utf-8') as f:
 def create_database(cursor):
     cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
 
-def use_database(conn):
-    conn.database = DB_NAME
-
 def create_table(cursor):
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS restaurant_all (
@@ -91,7 +88,6 @@ def main():
         cursor = conn.cursor()
 
         create_database(cursor)
-        use_database(conn)
         create_table(cursor)
         insert_data(cursor, conn, data)
         fetch_data(cursor)
